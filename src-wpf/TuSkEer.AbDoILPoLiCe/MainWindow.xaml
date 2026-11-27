@@ -274,7 +274,21 @@
                                                    FontSize="12" Foreground="#38BDF8" VerticalAlignment="Center" />
                                     </DockPanel>
 
-                                    <ListBox Grid.Row="1" ItemsSource="{Binding QueueItems}" Background="Transparent" BorderThickness="0">
+                                    <ListBox Grid.Row="1" ItemsSource="{Binding QueueItems}" Background="Transparent" BorderThickness="0"
+                                             HorizontalContentAlignment="Stretch">
+                                        <ListBox.ItemContainerStyle>
+                                            <Style TargetType="ListBoxItem">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Padding" Value="0" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ListBoxItem">
+                                                            <ContentPresenter />
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
                                         <ListBox.ItemTemplate>
                                             <DataTemplate DataType="{x:Type models:QueuedScriptSession}">
                                                 <Border Background="#660E1B3A" BorderBrush="#3338BDF8" BorderThickness="1"
@@ -670,7 +684,7 @@
                                         Command="{Binding StartSelectedScriptCommand}">
                                     <StackPanel HorizontalAlignment="Center">
                                         <TextBlock Text="▶  Start" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" />
-                                        <TextBlock Text="{Binding SelectedScriptHotkeyDisplay, StringFormat='({0})'}" FontSize="11" Opacity="0.85" HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding SelectedScriptHotkeyDisplay, StringFormat='{}({0})'}" FontSize="11" Opacity="0.85" HorizontalAlignment="Center" />
                                     </StackPanel>
                                 </Button>
 
@@ -678,7 +692,7 @@
                                         Command="{Binding PauseResumeCommand}">
                                     <StackPanel HorizontalAlignment="Center">
                                         <TextBlock Text="{Binding PauseButtonText, StringFormat='⏸  {0}'}" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" />
-                                        <TextBlock Text="{Binding PauseResumeHotkeyDisplay, StringFormat='({0})'}" FontSize="11" Opacity="0.85" HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding PauseResumeHotkeyDisplay, StringFormat='{}({0})'}" FontSize="11" Opacity="0.85" HorizontalAlignment="Center" />
                                     </StackPanel>
                                 </Button>
 
@@ -686,7 +700,7 @@
                                         Command="{Binding StopAllCommand}">
                                     <StackPanel HorizontalAlignment="Center">
                                         <TextBlock Text="■  Stop" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" />
-                                        <TextBlock Text="{Binding StopHotkeyDisplay, StringFormat='({0})'}" FontSize="11" Opacity="0.85" HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding StopHotkeyDisplay, StringFormat='{}({0})'}" FontSize="11" Opacity="0.85" HorizontalAlignment="Center" />
                                     </StackPanel>
                                 </Button>
                             </UniformGrid>
@@ -800,6 +814,19 @@
                             <ListBox Grid.Row="2" ItemsSource="{Binding Scripts}" Background="Transparent" BorderThickness="0"
                                      VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
                                      ScrollViewer.CanContentScroll="True" HorizontalContentAlignment="Stretch">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListBoxItem">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type models:ScriptItem}">
                                         <Border Background="#660A132B" BorderBrush="#3338BDF8" BorderThickness="1" CornerRadius="9" Padding="12,8" Margin="0,0,0,6">

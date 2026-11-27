@@ -64,6 +64,7 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
     private string _captureStatusNote = "Standard visibility (SetWindowDisplayAffinity disabled).";
     private string _dataOperationStatus = string.Empty;
     private bool _isEmojiPickerOpen;
+    private Dictionary<long, ScriptItem> _enabledScriptsById = new();
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -164,9 +165,15 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
             var target = p as ScriptItem ?? SelectedScript;
             if (target is null) return;
             target.Hotkey = new HotkeyBinding();
+            target.NotifyHotkeyChanged();
+            if (SelectedScript == target)
+            {
+                OnPropertyChanged(nameof(SelectedScriptHotkeyDisplay));
+            }
             await _repository.UpsertScriptAsync(target);
             RefreshHookBindings();
             ShortcutConflictWarning = string.Empty;
+            OnPropertyChanged(nameof(HasShortcutConflict));
         });
 
         RecordPauseHotkeyCommand = new RelayCommand(() =>
@@ -663,8 +670,8 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
                 break;
 
             case GlobalHotkeyActionKind.ScriptTrigger when evt.ScriptId.HasValue:
-                var script = Scripts.FirstOrDefault(s => s.Id == evt.ScriptId.Value && s.IsEnabled);
-                if (script is not null)
+                var lookup = Volatile.Read(ref _enabledScriptsById);
+                if (lookup.TryGetValue(evt.ScriptId.Value, out var script) && script.IsEnabled)
                 {
                     _scheduler.EnqueueOrSwitch(script, evt.HookTimestampTicks);
                 }
@@ -789,13 +796,13 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
     {
         var conflicts = new List<string>();
 
-        if (!targetLabel.Contains("Pause", StringComparison.OrdinalIgnoreCase) &&
+        if (!string.Equals(targetLabel, "Global Pause / Resume", StringComparison.Ordinal) &&
             candidate.Equals(_settings.PauseResumeHotkey))
         {
             conflicts.Add("Global Pause/Resume");
         }
 
-        if (!targetLabel.Contains("Stop", StringComparison.OrdinalIgnoreCase) &&
+        if (!string.Equals(targetLabel, "Global Stop", StringComparison.Ordinal) &&
             candidate.Equals(_settings.StopHotkey))
         {
             conflicts.Add("Global Stop");
@@ -841,16 +848,23 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
 
     private async void ApplyScriptHotkey(ScriptItem target, HotkeyBinding binding)
     {
-        target.Hotkey = binding;
-        target.NotifyHotkeyChanged();
-        if (SelectedScript == target)
+        try
         {
-            OnPropertyChanged(nameof(SelectedScriptHotkeyDisplay));
-        }
+            target.Hotkey = binding;
+            target.NotifyHotkeyChanged();
+            if (SelectedScript == target)
+            {
+                OnPropertyChanged(nameof(SelectedScriptHotkeyDisplay));
+            }
 
-        await _repository.UpsertScriptAsync(target);
-        RefreshHookBindings();
-        SaveBannerText = $"Assigned {binding.DisplayString} to \"{target.Name}\"";
+            await _repository.UpsertScriptAsync(target);
+            RefreshHookBindings();
+            SaveBannerText = $"Assigned {binding.DisplayString} to \"{target.Name}\"";
+        }
+        catch (Exception ex)
+        {
+            SaveBannerText = $"Failed to save shortcut: {ex.Message}";
+        }
     }
 
     private void ApplyPauseHotkey(HotkeyBinding binding)
@@ -871,6 +885,8 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
 
     private void RefreshHookBindings()
     {
+        var snapshotMap = Scripts.Where(s => s.IsEnabled).ToDictionary(s => s.Id);
+        Volatile.Write(ref _enabledScriptsById, snapshotMap);
         _hookService.UpdateBindings(Scripts, _settings.PauseResumeHotkey, _settings.StopHotkey);
         OnPropertyChanged(nameof(HookStatusText));
     }

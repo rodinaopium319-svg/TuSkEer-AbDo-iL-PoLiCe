@@ -83,7 +83,8 @@ public sealed class SystemTrayService : IDisposable
             var streamInfo = Application.GetResourceStream(uri);
             if (streamInfo?.Stream is not null)
             {
-                return new Icon(streamInfo.Stream);
+                using var stream = streamInfo.Stream;
+                return new Icon(stream);
             }
         }
         catch

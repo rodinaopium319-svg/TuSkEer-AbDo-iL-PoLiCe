@@ -165,7 +165,8 @@ public sealed class GlobalKeyboardHookService : IDisposable
                 {
                     if (vk == 0x1B) // ESC cancels recording
                     {
-                        CancelRecording();
+                        _isRecording = false;
+                        ThreadPool.UnsafeQueueUserWorkItem(_ => CancelRecording(), null);
                         return new IntPtr(1);
                     }
 

@@ -20,41 +20,67 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Verify .NET Version
-        run: dotnet --info
-
-      - name: Restore NuGet Dependencies
-        run: dotnet restore TuSkEerAbDoILPoLiCe.sln
-
-      - name: Build Release Configuration
-        run: dotnet build TuSkEerAbDoILPoLiCe.sln -c Release --no-restore
-
-      - name: Publish Self-Contained Windows x64
-        run: >
-          dotnet publish src-wpf/TuSkEer.AbDoILPoLiCe/TuSkEer.AbDoILPoLiCe.csproj
-          -c Release
-          -r win-x64
-          --self-contained true
-          -p:PublishSingleFile=false
-          -p:IncludeNativeLibrariesForSelfExtract=true
-          -p:DebugType=none
-          -p:DebugSymbols=false
-          -o dist/TuSkEer-AbDo-iL-PoLiCe-win-x64
-
-      - name: Copy Documentation and Verify Output
+      - name: Display Installed .NET SDK Version
         shell: pwsh
         run: |
-          Copy-Item README.md dist/TuSkEer-AbDo-iL-PoLiCe-win-x64/README.md -ErrorAction SilentlyContinue
-          Get-ChildItem dist/TuSkEer-AbDo-iL-PoLiCe-win-x64
-          if (-not (Test-Path "dist/TuSkEer-AbDo-iL-PoLiCe-win-x64/TuSkEer.AbDoILPoLiCe.exe")) {
-            throw "Expected executable TuSkEer.AbDoILPoLiCe.exe was not produced."
+          $ErrorActionPreference = 'Stop'
+          dotnet --version
+          dotnet --info
+
+      - name: Restore Solution Dependencies
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          dotnet restore TuSkEerAbDoILPoLiCe.sln
+          if ($LASTEXITCODE -ne 0) { throw "dotnet restore failed with exit code $LASTEXITCODE" }
+
+      - name: Build Solution (Release)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          dotnet build TuSkEerAbDoILPoLiCe.sln -c Release --no-restore
+          if ($LASTEXITCODE -ne 0) { throw "dotnet build failed with exit code $LASTEXITCODE" }
+
+      - name: Publish Self-Contained Windows x64
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          dotnet publish src-wpf/TuSkEer.AbDoILPoLiCe/TuSkEer.AbDoILPoLiCe.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:PublishSingleFile=false `
+            -p:DebugType=none `
+            -p:DebugSymbols=false `
+            -o dist/TuSkEer-AbDo-iL-PoLiCe-win-x64
+          if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed with exit code $LASTEXITCODE" }
+
+      - name: Verify Published Output and Bundle README
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Copy-Item README.md dist/TuSkEer-AbDo-iL-PoLiCe-win-x64/README.md -Force
+          $requiredFiles = @(
+            "dist/TuSkEer-AbDo-iL-PoLiCe-win-x64/TuSkEer.AbDoILPoLiCe.exe",
+            "dist/TuSkEer-AbDo-iL-PoLiCe-win-x64/TuSkEer.AbDoILPoLiCe.dll",
+            "dist/TuSkEer-AbDo-iL-PoLiCe-win-x64/e_sqlite3.dll"
+          )
+          foreach ($file in $requiredFiles) {
+            if (-not (Test-Path $file)) {
+              throw "Required published file missing: $file"
+            }
           }
+          Get-ChildItem dist/TuSkEer-AbDo-iL-PoLiCe-win-x64
 
       - name: Package Distributable ZIP Archive
         shell: pwsh
         run: |
+          $ErrorActionPreference = 'Stop'
           New-Item -ItemType Directory -Force -Path artifacts | Out-Null
           Compress-Archive -Path "dist/TuSkEer-AbDo-iL-PoLiCe-win-x64/*" -DestinationPath "artifacts/TuSkEer-AbDo-iL-PoLiCe-win-x64.zip" -Force
+          if (-not (Test-Path "artifacts/TuSkEer-AbDo-iL-PoLiCe-win-x64.zip")) {
+            throw "Failed to create distributable ZIP archive."
+          }
 
       - name: Upload Windows x64 ZIP Artifact
         uses: actions/upload-artifact@v4

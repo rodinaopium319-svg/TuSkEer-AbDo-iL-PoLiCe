@@ -84,7 +84,7 @@
                             CornerRadius="8">
                         <Grid Margin="{TemplateBinding Padding}">
                             <TextBlock x:Name="Watermark"
-                                       Text="{TemplateBinding Tag}"
+                                       Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
                                        Foreground="#64748B"
                                        FontSize="{TemplateBinding FontSize}"
                                        IsHitTestVisible="False"
