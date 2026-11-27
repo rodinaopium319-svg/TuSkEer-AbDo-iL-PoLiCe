@@ -1,0 +1,339 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Color Palette: Midnight Blue + Electric Cyan + Violet + Deep Crimson -->
+    <Color x:Key="MidnightBgColor">#050917</Color>
+    <Color x:Key="PanelGlassColor">#B80B142C</Color>
+    <Color x:Key="PanelGlassElevatedColor">#D0101D3D</Color>
+    <Color x:Key="ElectricCyanColor">#00D4FF</Color>
+    <Color x:Key="ElectricBlueColor">#2563EB</Color>
+    <Color x:Key="VioletAccentColor">#8B5CF6</Color>
+    <Color x:Key="CrimsonAccentColor">#EF4444</Color>
+    <Color x:Key="EmeraldReadyColor">#22C55E</Color>
+    <Color x:Key="TextPrimaryColor">#F1F5F9</Color>
+    <Color x:Key="TextSecondaryColor">#94A3B8</Color>
+
+    <SolidColorBrush x:Key="MidnightBgBrush" Color="{StaticResource MidnightBgColor}" />
+    <SolidColorBrush x:Key="PanelGlassBrush" Color="{StaticResource PanelGlassColor}" />
+    <SolidColorBrush x:Key="PanelGlassElevatedBrush" Color="{StaticResource PanelGlassElevatedColor}" />
+    <SolidColorBrush x:Key="ElectricCyanBrush" Color="{StaticResource ElectricCyanColor}" />
+    <SolidColorBrush x:Key="ElectricBlueBrush" Color="{StaticResource ElectricBlueColor}" />
+    <SolidColorBrush x:Key="VioletAccentBrush" Color="{StaticResource VioletAccentColor}" />
+    <SolidColorBrush x:Key="CrimsonAccentBrush" Color="{StaticResource CrimsonAccentColor}" />
+    <SolidColorBrush x:Key="EmeraldReadyBrush" Color="{StaticResource EmeraldReadyColor}" />
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}" />
+    <SolidColorBrush x:Key="SubtleBorderBrush" Color="#3338BDF8" />
+    <SolidColorBrush x:Key="InputSurfaceBrush" Color="#99060C1D" />
+
+    <LinearGradientBrush x:Key="WindowFrameBorderBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#CCEF4444" Offset="0.0" />
+        <GradientStop Color="#CC00D4FF" Offset="0.35" />
+        <GradientStop Color="#CC8B5CF6" Offset="0.72" />
+        <GradientStop Color="#CCEF4444" Offset="1.0" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="CyanButtonGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#1D4ED8" Offset="0" />
+        <GradientStop Color="#0284C7" Offset="0.55" />
+        <GradientStop Color="#00D4FF" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="VioletButtonGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#4C1D95" Offset="0" />
+        <GradientStop Color="#7C3AED" Offset="0.6" />
+        <GradientStop Color="#A855F7" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="CrimsonButtonGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#7F1D1D" Offset="0" />
+        <GradientStop Color="#DC2626" Offset="0.6" />
+        <GradientStop Color="#F43F5E" Offset="1" />
+    </LinearGradientBrush>
+
+    <!-- Translucent Glass Panel Container -->
+    <Style x:Key="GlassCardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource PanelGlassBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource SubtleBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#000000" BlurRadius="22" ShadowDepth="4" Opacity="0.45" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Futuristic Dark TextBox with Watermark Support via Tag -->
+    <Style x:Key="NeonTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Background" Value="{StaticResource InputSurfaceBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="CaretBrush" Value="{StaticResource ElectricCyanBrush}" />
+        <Setter Property="SelectionBrush" Value="#5500D4FF" />
+        <Setter Property="BorderBrush" Value="#4438BDF8" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="10,7" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <TextBlock x:Name="Watermark"
+                                       Text="{TemplateBinding Tag}"
+                                       Foreground="#64748B"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       IsHitTestVisible="False"
+                                       VerticalAlignment="Center"
+                                       Visibility="Collapsed" />
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource ElectricCyanBrush}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value="" />
+                                <Condition Property="IsKeyboardFocused" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Watermark" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Futuristic Electric Blue Slider -->
+    <Style TargetType="Slider">
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Slider">
+                    <Grid VerticalAlignment="Center">
+                        <Border Height="6" CornerRadius="3" Background="#441E293B" BorderBrush="#3338BDF8" BorderThickness="1" />
+                        <Track x:Name="PART_Track">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Command="Slider.DecreaseLarge">
+                                    <RepeatButton.Template>
+                                        <ControlTemplate TargetType="RepeatButton">
+                                            <Border Height="6" CornerRadius="3" Background="{StaticResource CyanButtonGradient}" />
+                                        </ControlTemplate>
+                                    </RepeatButton.Template>
+                                </RepeatButton>
+                            </Track.DecreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Template>
+                                        <ControlTemplate TargetType="Thumb">
+                                            <Ellipse Width="18" Height="18" Fill="White" Stroke="{StaticResource ElectricCyanBrush}" StrokeThickness="2.5">
+                                                <Ellipse.Effect>
+                                                    <DropShadowEffect Color="#00D4FF" BlurRadius="10" ShadowDepth="0" Opacity="0.7" />
+                                                </Ellipse.Effect>
+                                            </Ellipse>
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Command="Slider.IncreaseLarge">
+                                    <RepeatButton.Template>
+                                        <ControlTemplate TargetType="RepeatButton">
+                                            <Border Height="6" Background="Transparent" />
+                                        </ControlTemplate>
+                                    </RepeatButton.Template>
+                                </RepeatButton>
+                            </Track.IncreaseRepeatButton>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Subtle Glass Button -->
+    <Style x:Key="GlassButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="#221E293B" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="BorderBrush" Value="#4438BDF8" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="12,6" />
+        <Setter Property="FontSize" Value="12.5" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="#4400D4FF" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource ElectricCyanBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.82" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.45" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Primary Electric Blue Action Button -->
+    <Style x:Key="ElectricActionButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource CyanButtonGradient}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="#AA38BDF8" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="16,9" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="10"
+                            Padding="{TemplateBinding Padding}">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#00D4FF" BlurRadius="14" ShadowDepth="0" Opacity="0.35" />
+                        </Border.Effect>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="#FFFFFFFF" />
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.95" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.8" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Violet Pause/Resume Deck Button -->
+    <Style x:Key="VioletActionButtonStyle" TargetType="Button" BasedOn="{StaticResource ElectricActionButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource VioletButtonGradient}" />
+        <Setter Property="BorderBrush" Value="#AA8B5CF6" />
+    </Style>
+
+    <!-- Crimson Stop Deck Button -->
+    <Style x:Key="CrimsonActionButtonStyle" TargetType="Button" BasedOn="{StaticResource ElectricActionButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource CrimsonButtonGradient}" />
+        <Setter Property="BorderBrush" Value="#AAEF4444" />
+    </Style>
+
+    <!-- Neon Toggle Switch Style -->
+    <Style x:Key="NeonSwitchCheckBoxStyle" TargetType="CheckBox">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border x:Name="Track" Width="42" Height="22" CornerRadius="11"
+                                Background="#331E293B" BorderBrush="#55475569" BorderThickness="1">
+                            <Border x:Name="Thumb" Width="16" Height="16" CornerRadius="8"
+                                    Background="#CBD5E1" HorizontalAlignment="Left" Margin="2,0,0,0" />
+                        </Border>
+                        <ContentPresenter Margin="8,0,0,0" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Track" Property="Background" Value="#CC0284C7" />
+                            <Setter TargetName="Track" Property="BorderBrush" Value="{StaticResource ElectricCyanBrush}" />
+                            <Setter TargetName="Thumb" Property="HorizontalAlignment" Value="Right" />
+                            <Setter TargetName="Thumb" Property="Margin" Value="0,0,2,0" />
+                            <Setter TargetName="Thumb" Property="Background" Value="White" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Futuristic Navigation Tab Button -->
+    <Style x:Key="NavTabButtonStyle" TargetType="RadioButton">
+        <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="13,7" />
+        <Setter Property="FontSize" Value="12.5" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+                            <Setter TargetName="Bd" Property="Background" Value="#221E293B" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontWeight" Value="SemiBold" />
+                            <Setter TargetName="Bd" Property="Background" Value="#440284C7" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="#AA00D4FF" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Thin Translucent ScrollBar -->
+    <Style TargetType="ScrollBar">
+        <Setter Property="Width" Value="7" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Track x:Name="PART_Track" IsDirectionReversed="True">
+                        <Track.Thumb>
+                            <Thumb>
+                                <Thumb.Template>
+                                    <ControlTemplate TargetType="Thumb">
+                                        <Border Background="#4438BDF8" CornerRadius="3" Margin="1" />
+                                    </ControlTemplate>
+                                </Thumb.Template>
+                            </Thumb>
+                        </Track.Thumb>
+                    </Track>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>TuSkEer.AbDoILPoLiCe</AssemblyName>
+    <RootNamespace>TuSkEer.AbDoILPoLiCe</RootNamespace>
+    <ApplicationIcon>Resources\app_icon.ico</ApplicationIcon>
+    <Product>TuSkEer AbDo iL PoLiCe</Product>
+    <Company>TuSkEer</Company>
+    <Authors>AbDo iL PoLiCe</Authors>
+    <Description>Professional Windows Auto Typing Engine and Script Manager</Description>
+    <Version>1.0.0</Version>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <!-- Prevent WinForms implicit usings from colliding with WPF Application/Clipboard/Brush types -->
+  <ItemGroup>
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\owner_portrait.jpg" />
+    <Resource Include="Resources\reference_concept.png" />
+    <Resource Include="Resources\app_icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\app_icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
