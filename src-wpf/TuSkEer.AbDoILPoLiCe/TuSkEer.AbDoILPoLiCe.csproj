@@ -33,6 +33,7 @@
   <ItemGroup>
     <Resource Include="Resources\owner_portrait.jpg" />
     <Resource Include="Resources\reference_concept.png" />
+    <Resource Include="Resources\bg_full.png" />
     <Resource Include="Resources\app_icon.ico" />
   </ItemGroup>
 

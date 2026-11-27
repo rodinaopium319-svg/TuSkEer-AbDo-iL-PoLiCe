@@ -3,7 +3,7 @@
 
     <!-- Color Palette: Midnight Blue + Electric Cyan + Violet + Deep Crimson -->
     <Color x:Key="MidnightBgColor">#050917</Color>
-    <Color x:Key="PanelGlassColor">#B80B142C</Color>
+    <Color x:Key="PanelGlassColor">#9E0B142C</Color>
     <Color x:Key="PanelGlassElevatedColor">#D0101D3D</Color>
     <Color x:Key="ElectricCyanColor">#00D4FF</Color>
     <Color x:Key="ElectricBlueColor">#2563EB</Color>
@@ -51,6 +51,23 @@
         <GradientStop Color="#F43F5E" Offset="1" />
     </LinearGradientBrush>
 
+    <!-- Global font stack with emoji fallback so emoji render in color instead of boxes -->
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Segoe UI, Segoe UI Emoji" />
+    </Style>
+    <Style TargetType="TextBox">
+        <Setter Property="FontFamily" Value="Segoe UI, Segoe UI Emoji" />
+    </Style>
+    <Style TargetType="Button">
+        <Setter Property="FontFamily" Value="Segoe UI, Segoe UI Emoji" />
+    </Style>
+    <Style TargetType="CheckBox">
+        <Setter Property="FontFamily" Value="Segoe UI, Segoe UI Emoji" />
+    </Style>
+    <Style TargetType="RadioButton">
+        <Setter Property="FontFamily" Value="Segoe UI, Segoe UI Emoji" />
+    </Style>
+
     <!-- Translucent Glass Panel Container -->
     <Style x:Key="GlassCardStyle" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource PanelGlassBrush}" />
@@ -62,6 +79,13 @@
                 <DropShadowEffect Color="#000000" BlurRadius="22" ShadowDepth="4" Opacity="0.45" />
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <!-- Fully transparent glass card: only a faint tint + edge so background art shows through -->
+    <Style x:Key="ClearGlassCardStyle" TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
+        <Setter Property="Background" Value="#140B1830" />
+        <Setter Property="BorderBrush" Value="#4438BDF8" />
+        <Setter Property="Effect" Value="{x:Null}" />
     </Style>
 
     <!-- Futuristic Dark TextBox with Watermark Support via Tag -->

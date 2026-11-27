@@ -49,6 +49,20 @@ public partial class MainWindow : Window
         WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
     }
 
+    private void ContactDeveloper_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("https://wa.me/201141706613") { UseShellExecute = true });
+        }
+        catch { }
+    }
+
+    private void SettingsButton_Click(object sender, RoutedEventArgs e)
+    {
+        SettingsMenu.IsOpen = !SettingsMenu.IsOpen;
+    }
+
     private void CloseToTray_Click(object sender, RoutedEventArgs e)
     {
         if (_viewModel.MinimizeToTrayOnClose)

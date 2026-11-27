@@ -39,106 +39,8 @@
         </Border.Background>
 
         <Grid>
-            <!-- Ambient Neon Edge Glows -->
-            <Ellipse Width="520" Height="360" HorizontalAlignment="Left" VerticalAlignment="Top"
-                     Margin="-160,-140,0,0" IsHitTestVisible="False" Opacity="0.22">
-                <Ellipse.Fill>
-                    <RadialGradientBrush>
-                        <GradientStop Color="#00D4FF" Offset="0" />
-                        <GradientStop Color="#0000D4FF" Offset="1" />
-                    </RadialGradientBrush>
-                </Ellipse.Fill>
-            </Ellipse>
-            <Ellipse Width="500" Height="380" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                     Margin="0,0,-140,-120" IsHitTestVisible="False" Opacity="0.20">
-                <Ellipse.Fill>
-                    <RadialGradientBrush>
-                        <GradientStop Color="#EF4444" Offset="0" />
-                        <GradientStop Color="#00EF4444" Offset="1" />
-                    </RadialGradientBrush>
-                </Ellipse.Fill>
-            </Ellipse>
-            <Ellipse Width="420" Height="320" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                     Margin="0,0,0,-130" IsHitTestVisible="False" Opacity="0.16">
-                <Ellipse.Fill>
-                    <RadialGradientBrush>
-                        <GradientStop Color="#8B5CF6" Offset="0" />
-                        <GradientStop Color="#008B5CF6" Offset="1" />
-                    </RadialGradientBrush>
-                </Ellipse.Fill>
-            </Ellipse>
-
-            <!-- Tasteful Atmospheric Owner Portrait Silhouette (Right Backdrop) -->
-            <Image Source="pack://application:,,,/Resources/owner_portrait.jpg"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Stretch"
-                   Stretch="UniformToFill"
-                   Width="420"
-                   Opacity="0.11"
-                   IsHitTestVisible="False">
-                <Image.OpacityMask>
-                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                        <GradientStop Color="#00000000" Offset="0.0" />
-                        <GradientStop Color="#AA000000" Offset="0.55" />
-                        <GradientStop Color="#EE000000" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Image.OpacityMask>
-            </Image>
-
-            <!-- Stylized US Flag Backdrop (top-right, behind portrait glow) -->
-            <Border HorizontalAlignment="Right" VerticalAlignment="Top" Width="470" Height="280"
-                    Margin="0,46,-14,0" Opacity="0.16" IsHitTestVisible="False" CornerRadius="8">
-                <Border.OpacityMask>
-                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                        <GradientStop Color="#00000000" Offset="0.0" />
-                        <GradientStop Color="#FF000000" Offset="0.6" />
-                    </LinearGradientBrush>
-                </Border.OpacityMask>
-                <Grid>
-                    <UniformGrid Rows="7">
-                        <Border Background="#B22234" /><Border Background="#E8E8E8" />
-                        <Border Background="#B22234" /><Border Background="#E8E8E8" />
-                        <Border Background="#B22234" /><Border Background="#E8E8E8" />
-                        <Border Background="#B22234" />
-                    </UniformGrid>
-                    <Border Background="#1E3A8A" HorizontalAlignment="Left" Width="190" Margin="0,0,0,120" />
-                </Grid>
-            </Border>
-
-            <!-- Electric Lightning Accent Lines -->
-            <Path Data="M 470,58 L 610,190 L 552,190 L 700,330" Stroke="#4400D4FF" StrokeThickness="2"
-                  IsHitTestVisible="False">
-                <Path.Effect><DropShadowEffect Color="#00D4FF" BlurRadius="10" ShadowDepth="0" Opacity="0.6" /></Path.Effect>
-            </Path>
-            <Path Data="M 905,70 L 1010,210 L 958,210 L 1060,330" Stroke="#33EF4444" StrokeThickness="2"
-                  IsHitTestVisible="False">
-                <Path.Effect><DropShadowEffect Color="#EF4444" BlurRadius="10" ShadowDepth="0" Opacity="0.6" /></Path.Effect>
-            </Path>
-
-            <!-- Neon Script Watermark (bottom-right, above status bar) -->
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,58"
-                        Opacity="0.55" IsHitTestVisible="False">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock Text="TuSkEer " FontSize="30" FontWeight="Bold" FontStyle="Italic" Foreground="#99F1F5F9">
-                        <TextBlock.Effect><DropShadowEffect Color="#00D4FF" BlurRadius="12" ShadowDepth="0" Opacity="0.7" /></TextBlock.Effect>
-                    </TextBlock>
-                    <TextBlock Text="AbDo " FontSize="30" FontWeight="Bold" FontStyle="Italic" Foreground="#CCF43F5E">
-                        <TextBlock.Effect><DropShadowEffect Color="#EF4444" BlurRadius="12" ShadowDepth="0" Opacity="0.7" /></TextBlock.Effect>
-                    </TextBlock>
-                    <TextBlock Text="iL PoLiCe" FontSize="30" FontWeight="Bold" FontStyle="Italic" Foreground="#CC38BDF8">
-                        <TextBlock.Effect><DropShadowEffect Color="#38BDF8" BlurRadius="12" ShadowDepth="0" Opacity="0.7" /></TextBlock.Effect>
-                    </TextBlock>
-                </StackPanel>
-                <TextBlock Text="P O W E R E D   B Y   P A S S I O N" FontSize="12" FontWeight="SemiBold"
-                           Foreground="#99F1F5F9" HorizontalAlignment="Right" Margin="0,2,4,0" />
-            </StackPanel>
-
-            <!-- Red Script Watermark (bottom-left, above status bar) -->
-            <TextBlock Text="AbDo iL PoLiCe" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                       Margin="34,0,0,56" FontSize="26" FontWeight="Bold" FontStyle="Italic"
-                       Foreground="#73F43F5E" IsHitTestVisible="False">
-                <TextBlock.Effect><DropShadowEffect Color="#EF4444" BlurRadius="12" ShadowDepth="0" Opacity="0.7" /></TextBlock.Effect>
-            </TextBlock>
+            <!-- Full-window artwork background cleaned from the owner's design concept -->
+            <Image Source="pack://application:,,,/Resources/bg_full.png" Stretch="Fill" IsHitTestVisible="False" />
 
             <!-- Subtle GPU Particle Layer (Automatically pauses when minimized/hidden) -->
             <controls:ParticleOverlay IsAnimationActive="{Binding EnableBackgroundParticles}" />
@@ -150,45 +52,31 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <!-- ================= ROW 0: TOP BAR ================= -->
-                <Grid Grid.Row="0" Height="62">
+                <!-- Angled glass pane behind the right header/column (design glass edges) -->
+                <Path Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False"
+                      Stroke="#66BAE6FD" StrokeThickness="1.5" Fill="#14A5C8FF"
+                      Data="M 982,105 L 1249,85 L 1249,243 L 1058,243 Z" />
+                <Path Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False"
+                      Stroke="#2EF0F9FF" StrokeThickness="1" Fill="Transparent"
+                      Data="M 991,114 L 1240,94 L 1240,234 L 1067,234 Z" />
+
+                <!-- ================= ROW 0: TOP BAR (framed header panel) ================= -->
+                <Border Grid.Row="0" Margin="6,6,6,4" CornerRadius="20" BorderThickness="1.5"
+                        Background="#66081420">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#AA38BDF8" Offset="0" />
+                            <GradientStop Color="#AAEF4444" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                <Grid Height="166">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <!-- Owner Portrait Avatar + Crown + Brand Title -->
-                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                        <Grid Width="54" Height="56" Margin="0,0,12,0">
-                            <!-- Crown Vector Mark -->
-                            <Path Data="M 13,9 L 17,2 L 24,7 L 31,1 L 38,7 L 45,2 L 49,9 Z"
-                                  Stroke="#F43F5E" StrokeThickness="1.6" Fill="#33EF4444"
-                                  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-3,0,0" />
-                            <Border Width="48" Height="48" CornerRadius="24" VerticalAlignment="Bottom"
-                                    BorderThickness="2" BorderBrush="{StaticResource WindowFrameBorderBrush}">
-                                <Border.Clip>
-                                    <EllipseGeometry Center="24,24" RadiusX="23" RadiusY="23" />
-                                </Border.Clip>
-                                <Image Source="pack://application:,,,/Resources/owner_portrait.jpg" Stretch="UniformToFill" />
-                            </Border>
-                        </Grid>
-
-                        <StackPanel VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="TuSkEer " FontSize="22" FontWeight="Bold" FontStyle="Italic" Foreground="White" />
-                                <TextBlock Text="AbDo " FontSize="22" FontWeight="Bold" FontStyle="Italic" Foreground="#F43F5E" />
-                                <TextBlock Text="iL PoLiCe" FontSize="22" FontWeight="Bold" FontStyle="Italic" Foreground="#38BDF8" />
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
-
-                    <!-- Centered Tagline (matches reference concept) -->
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="Auto Typer" FontSize="13" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" />
-                        <TextBlock Text="Type Smart ... Be Faster" FontSize="12" FontStyle="Italic"
-                                   Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Center" Margin="0,1,0,0" />
-                    </StackPanel>
+                    <!-- Header artwork (portrait, crown, brand lettering, tagline) lives in the background image -->
 
                     <!-- Live Status Badge + Quick Actions + Window Controls -->
                     <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center"
@@ -207,20 +95,65 @@
                         <Button Style="{StaticResource GlassButtonStyle}" Margin="0,0,8,0"
                                 Command="{Binding NavigateCommand}" CommandParameter="KeyboardShortcuts"
                                 Content="Shortcuts" />
-                        <Button Style="{StaticResource GlassButtonStyle}" Margin="0,0,16,0"
-                                Command="{Binding NavigateCommand}" CommandParameter="Settings"
+                        <Button x:Name="SettingsButton" Style="{StaticResource GlassButtonStyle}" Margin="0,0,16,0"
+                                Click="SettingsButton_Click"
                                 Content="Settings" />
+                        <Popup x:Name="SettingsMenu" PlacementTarget="{Binding ElementName=SettingsButton}"
+                               Placement="Bottom" StaysOpen="False" AllowsTransparency="True">
+                            <Border Background="#F00B142C" BorderBrush="#3338BDF8" BorderThickness="1"
+                                    CornerRadius="10" Padding="6" Margin="0,6,0,0">
+                                <StackPanel Width="200">
+                                    <RadioButton Style="{StaticResource NavTabButtonStyle}" Content="Dashboard"
+                                                 IsChecked="{Binding ActiveTab, Mode=OneWay, Converter={StaticResource TabEqualityConverter}, ConverterParameter=Dashboard}"
+                                                 Command="{Binding NavigateCommand}" CommandParameter="Dashboard" />
+                                    <RadioButton Style="{StaticResource NavTabButtonStyle}" Content="Scripts Library"
+                                                 IsChecked="{Binding ActiveTab, Mode=OneWay, Converter={StaticResource TabEqualityConverter}, ConverterParameter=ScriptsLibrary}"
+                                                 Command="{Binding NavigateCommand}" CommandParameter="ScriptsLibrary" />
+                                    <RadioButton Style="{StaticResource NavTabButtonStyle}" Content="Script Editor"
+                                                 IsChecked="{Binding ActiveTab, Mode=OneWay, Converter={StaticResource TabEqualityConverter}, ConverterParameter=ScriptEditor}"
+                                                 Command="{Binding NavigateCommand}" CommandParameter="ScriptEditor" />
+                                    <RadioButton Style="{StaticResource NavTabButtonStyle}" Content="Keyboard Shortcuts"
+                                                 IsChecked="{Binding ActiveTab, Mode=OneWay, Converter={StaticResource TabEqualityConverter}, ConverterParameter=KeyboardShortcuts}"
+                                                 Command="{Binding NavigateCommand}" CommandParameter="KeyboardShortcuts" />
+                                    <RadioButton Style="{StaticResource NavTabButtonStyle}" Content="Typing Engine"
+                                                 IsChecked="{Binding ActiveTab, Mode=OneWay, Converter={StaticResource TabEqualityConverter}, ConverterParameter=TypingEngine}"
+                                                 Command="{Binding NavigateCommand}" CommandParameter="TypingEngine" />
+                                    <RadioButton Style="{StaticResource NavTabButtonStyle}" Content="Settings"
+                                                 IsChecked="{Binding ActiveTab, Mode=OneWay, Converter={StaticResource TabEqualityConverter}, ConverterParameter=Settings}"
+                                                 Command="{Binding NavigateCommand}" CommandParameter="Settings" />
+                                    <RadioButton Style="{StaticResource NavTabButtonStyle}" Content="About TuSkEer"
+                                                 IsChecked="{Binding ActiveTab, Mode=OneWay, Converter={StaticResource TabEqualityConverter}, ConverterParameter=About}"
+                                                 Command="{Binding NavigateCommand}" CommandParameter="About" />
+                                </StackPanel>
+                            </Border>
+                        </Popup>
 
-                        <!-- Window Caption Buttons -->
-                        <Button Style="{StaticResource GlassButtonStyle}" Width="34" Height="30" Padding="0" Margin="0,0,6,0"
-                                Click="MinimizeWindow_Click" ToolTip="Minimize" Content="—" />
-                        <Button Style="{StaticResource GlassButtonStyle}" Width="34" Height="30" Padding="0" Margin="0,0,6,0"
-                                Click="MaximizeRestore_Click" ToolTip="Maximize / Restore" Content="□" />
-                        <Button Style="{StaticResource GlassButtonStyle}" Width="34" Height="30" Padding="0"
-                                BorderBrush="#66EF4444"
-                                Click="CloseToTray_Click" ToolTip="Hide to System Tray" Content="✕" />
+                        <!-- Window Caption Buttons in a dark glass capsule with red-glowing right edge (design art style) -->
+                        <Border Background="#B00C0810" BorderThickness="1"
+                                CornerRadius="17" Padding="6,0" VerticalAlignment="Center" Height="34">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#38FFFFFF" Offset="0" />
+                                    <GradientStop Color="#55EF4444" Offset="0.6" />
+                                    <GradientStop Color="#AAEF4444" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource GlassButtonStyle}" Background="Transparent" BorderThickness="0"
+                                        Width="42" Height="30" Padding="0" FontSize="15" Foreground="#F0FFFFFF"
+                                        Click="MinimizeWindow_Click" ToolTip="Minimize" Content="—" />
+                                <Button Style="{StaticResource GlassButtonStyle}" Background="Transparent" BorderThickness="0"
+                                        Width="42" Height="30" Padding="0" FontSize="14" Foreground="#F0FFFFFF"
+                                        Click="MaximizeRestore_Click" ToolTip="Maximize / Restore" Content="□" />
+                                <Button Style="{StaticResource GlassButtonStyle}" Background="Transparent" BorderThickness="0"
+                                        Width="42" Height="30" Padding="0" FontSize="15" FontWeight="Bold" Foreground="#F0FFFFFF"
+                                        Click="CloseToTray_Click" ToolTip="Hide to System Tray" Content="✕" />
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
                 </Grid>
+                </Border>
+
 
                 <!-- ================= ROW 1: TAB WORKSPACES ================= -->
                 <Grid Grid.Row="1">
@@ -384,7 +317,7 @@
                     </Grid>
 
                     <!-- 2. SCRIPTS LIBRARY TAB (Virtualized 300+ Scripts) -->
-                    <Border Padding="18">
+                    <Border Style="{StaticResource GlassCardStyle}" Padding="18">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -494,7 +427,7 @@
                     </Border>
 
                     <!-- 3. SCRIPT EDITOR TAB (Main Futuristic 3-Column Command Center) -->
-                    <Grid>
+                    <Grid Margin="6,0,146,0">
                         <Grid.Style>
                             <Style TargetType="Grid">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -507,13 +440,13 @@
                         </Grid.Style>
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="270" />
+                            <ColumnDefinition Width="330" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="280" />
+                            <ColumnDefinition Width="250" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- LEFT PANEL: Scripts Library Quick List -->
-                        <Border Grid.Column="0" Style="{StaticResource GlassCardStyle}" Padding="14" Margin="0,0,14,0">
+                        <!-- LEFT PANEL: Scripts Library Quick List (bottom margin keeps the red script logo visible) -->
+                        <Border Grid.Column="0" Style="{StaticResource GlassCardStyle}" Padding="14" Margin="0,0,8,44">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -541,6 +474,7 @@
                                          ItemsSource="{Binding FilteredScripts}"
                                          SelectedItem="{Binding SelectedScript}"
                                          Background="Transparent" BorderThickness="0"
+                                         ScrollViewer.VerticalScrollBarVisibility="Visible"
                                          VirtualizingPanel.IsVirtualizing="True"
                                          VirtualizingPanel.VirtualizationMode="Recycling"
                                          ScrollViewer.CanContentScroll="True"
@@ -598,30 +532,13 @@
                         </Border>
 
                         <!-- CENTER PANEL: Editor Workspace + Start/Pause/Stop Deck -->
-                        <Grid Grid.Column="1" Margin="0,0,14,0">
+                        <Grid Grid.Column="1" Margin="8,0,8,0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <!-- Script Tab Strip (matches reference concept) -->
-                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="2,0,0,10">
-                                <Border Background="#997F1D1D" BorderBrush="#EF4444" BorderThickness="1.2"
-                                        CornerRadius="10" Padding="12,6">
-                                    <DockPanel>
-                                        <TextBlock FontSize="13" FontWeight="SemiBold" Foreground="White">
-                                            <Run Text="👑 " /><Run Text="{Binding EditorName, Mode=OneWay}" />
-                                        </TextBlock>
-                                        <TextBlock DockPanel.Dock="Right" Text="  ✕" FontSize="12" Foreground="#FCA5A5" />
-                                    </DockPanel>
-                                </Border>
-                                <Button Style="{StaticResource GlassButtonStyle}" Margin="8,0,0,0" Padding="14,5"
-                                        FontSize="16" FontWeight="Bold"
-                                        Command="{Binding AddScriptCommand}" Content="＋" ToolTip="Add Script" />
-                            </StackPanel>
-
-                            <Border Grid.Row="1" Style="{StaticResource GlassCardStyle}" Padding="16">
+                            <Border Grid.Row="0" Style="{StaticResource GlassCardStyle}" Padding="16">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -642,26 +559,15 @@
 
                                         <TextBlock Grid.Column="0" Text="Script Name:" FontSize="13" Foreground="{StaticResource TextSecondaryBrush}"
                                                    VerticalAlignment="Center" Margin="0,0,10,0" />
-                                        <Border Grid.Column="1" Margin="0,0,14,0" Background="{StaticResource InputSurfaceBrush}"
-                                                BorderBrush="{StaticResource SubtleBorderBrush}" BorderThickness="1" CornerRadius="9">
-                                            <DockPanel>
-                                                <TextBlock DockPanel.Dock="Left" Text="🔥" FontSize="14"
-                                                           VerticalAlignment="Center" Margin="10,0,2,0" />
-                                                <TextBox Style="{StaticResource NeonTextBoxStyle}" Background="Transparent"
-                                                         BorderThickness="0"
-                                                         Text="{Binding EditorName, UpdateSourceTrigger=PropertyChanged}" />
-                                            </DockPanel>
-                                        </Border>
+                                        <TextBox Grid.Column="1" Style="{StaticResource NeonTextBoxStyle}" Margin="0,0,14,0"
+                                                 Text="{Binding EditorName, UpdateSourceTrigger=PropertyChanged}" />
 
                                         <TextBlock Grid.Column="2" Text="Hotkey:" FontSize="13" Foreground="{StaticResource TextSecondaryBrush}"
                                                    VerticalAlignment="Center" Margin="0,0,8,0" />
-                                        <Button Grid.Column="3" Style="{StaticResource ElectricActionButtonStyle}" MinWidth="110" Margin="0,0,6,0"
+                                        <Button Grid.Column="3" Style="{StaticResource GlassButtonStyle}" MinWidth="110" Margin="0,0,6,0"
                                                 Command="{Binding RecordSelectedScriptHotkeyCommand}"
-                                                ToolTip="Click to record a new global shortcut">
-                                            <TextBlock FontWeight="Bold">
-                                                <Run Text="{Binding SelectedScriptHotkeyDisplay, Mode=OneWay}" /><Run Text="  ⌨" />
-                                            </TextBlock>
-                                        </Button>
+                                                Content="{Binding SelectedScriptHotkeyDisplay}"
+                                                ToolTip="Click to record a new global shortcut" />
                                         <Button Grid.Column="4" Style="{StaticResource GlassButtonStyle}" Padding="9,6"
                                                 Command="{Binding SaveScriptCommand}" Content="Save" />
                                     </Grid>
@@ -738,28 +644,25 @@
                             </Border>
 
                             <!-- Start / Pause / Stop Futuristic Action Deck -->
-                            <UniformGrid Grid.Row="2" Columns="3" Margin="0,12,0,0">
-                                <Button Style="{StaticResource ElectricActionButtonStyle}" Height="62" Margin="0,0,10,0"
+                            <UniformGrid Grid.Row="1" Columns="3" Margin="0,12,0,0">
+                                <Button Style="{StaticResource ElectricActionButtonStyle}" Height="56" Margin="0,0,10,0"
                                         Command="{Binding StartSelectedScriptCommand}">
-                                    <Button.Effect><DropShadowEffect Color="#00D4FF" BlurRadius="18" ShadowDepth="0" Opacity="0.55" /></Button.Effect>
                                     <StackPanel HorizontalAlignment="Center">
                                         <TextBlock Text="▶  Start" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" />
                                         <TextBlock Text="{Binding SelectedScriptHotkeyDisplay, StringFormat='{}({0})'}" FontSize="11" Opacity="0.85" HorizontalAlignment="Center" />
                                     </StackPanel>
                                 </Button>
 
-                                <Button Style="{StaticResource VioletActionButtonStyle}" Height="62" Margin="0,0,10,0"
+                                <Button Style="{StaticResource VioletActionButtonStyle}" Height="56" Margin="0,0,10,0"
                                         Command="{Binding PauseResumeCommand}">
-                                    <Button.Effect><DropShadowEffect Color="#8B5CF6" BlurRadius="18" ShadowDepth="0" Opacity="0.55" /></Button.Effect>
                                     <StackPanel HorizontalAlignment="Center">
                                         <TextBlock Text="{Binding PauseButtonText, StringFormat='⏸  {0}'}" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" />
                                         <TextBlock Text="{Binding PauseResumeHotkeyDisplay, StringFormat='{}({0})'}" FontSize="11" Opacity="0.85" HorizontalAlignment="Center" />
                                     </StackPanel>
                                 </Button>
 
-                                <Button Style="{StaticResource CrimsonActionButtonStyle}" Height="62"
+                                <Button Style="{StaticResource CrimsonActionButtonStyle}" Height="56"
                                         Command="{Binding StopAllCommand}">
-                                    <Button.Effect><DropShadowEffect Color="#EF4444" BlurRadius="18" ShadowDepth="0" Opacity="0.55" /></Button.Effect>
                                     <StackPanel HorizontalAlignment="Center">
                                         <TextBlock Text="■  Stop" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" />
                                         <TextBlock Text="{Binding StopHotkeyDisplay, StringFormat='{}({0})'}" FontSize="11" Opacity="0.85" HorizontalAlignment="Center" />
@@ -768,16 +671,14 @@
                             </UniformGrid>
                         </Grid>
 
-                        <!-- RIGHT PANEL: Speed Control + Repeat Characters + Extras -->
-                        <StackPanel Grid.Column="2">
+                        <!-- RIGHT PANEL: Speed Control + Repeat Characters + Extras (top margin keeps header art visible) -->
+                        <StackPanel Grid.Column="2" Margin="0,56,0,0">
                             <!-- Typing Speed Card -->
-                            <Border Style="{StaticResource GlassCardStyle}" Padding="16" Margin="0,0,0,12">
+                            <Border Style="{StaticResource ClearGlassCardStyle}" Padding="16" Margin="0,0,0,12">
                                 <StackPanel>
                                     <TextBlock Text="⚡  Typing Speed (MS)" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,12" />
 
                                     <DockPanel Margin="0,0,0,10">
-                                        <TextBlock Text="−" FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}"
-                                                   VerticalAlignment="Center" Margin="4,0,12,0" />
                                         <TextBox Style="{StaticResource NeonTextBoxStyle}" Width="105" FontSize="18" FontWeight="Bold"
                                                  HorizontalContentAlignment="Center"
                                                  Text="{Binding TypingDelayMs, UpdateSourceTrigger=PropertyChanged}" />
@@ -796,7 +697,7 @@
                             </Border>
 
                             <!-- Repeat Characters Fast Send Card -->
-                            <Border Style="{StaticResource GlassCardStyle}" Padding="16" Margin="0,0,0,12">
+                            <Border Style="{StaticResource ClearGlassCardStyle}" Padding="16" Margin="0,0,0,12">
                                 <StackPanel>
                                     <DockPanel Margin="0,0,0,8">
                                         <TextBlock Text="Aa  Repeat Characters" FontSize="14" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center" />
@@ -814,25 +715,19 @@
                             </Border>
 
                             <!-- Extras / Append Summary Card -->
-                            <Border Style="{StaticResource GlassCardStyle}" Padding="16">
+                            <Border Style="{StaticResource ClearGlassCardStyle}" Padding="16">
                                 <StackPanel>
-                                    <TextBlock Text="🧩  Extras" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,8" />
+                                    <TextBlock Text="🧩  Extras &amp; Paste Mode" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,8" />
                                     <TextBlock Text="{Binding AppendModeLabel}" FontSize="12" Foreground="#38BDF8" Margin="0,0,0,10" />
-                                    <Grid>
-                                        <TextBox Style="{StaticResource NeonTextBoxStyle}" Margin="0,0,46,0"
-                                                 Tag="@Mention / Emoji / Copy Name"
-                                                 Text="{Binding AppendContent, UpdateSourceTrigger=PropertyChanged}" />
-                                        <Button HorizontalAlignment="Right" Width="38" Style="{StaticResource GlassButtonStyle}"
-                                                Padding="0" FontSize="15"
-                                                Command="{Binding ToggleEmojiPickerCommand}" Content="😀" />
-                                    </Grid>
+                                    <TextBox Style="{StaticResource NeonTextBoxStyle}"
+                                             Text="{Binding AppendContent, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
                             </Border>
                         </StackPanel>
                     </Grid>
 
                     <!-- 4. KEYBOARD SHORTCUTS TAB -->
-                    <Border Padding="18">
+                    <Border Style="{StaticResource GlassCardStyle}" Padding="18">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -957,7 +852,7 @@
                     </Border>
 
                     <!-- 5. TYPING ENGINE TAB -->
-                    <Border Padding="20">
+                    <Border Style="{StaticResource GlassCardStyle}" Padding="20">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -1026,7 +921,7 @@
                     </Border>
 
                     <!-- 6. SETTINGS TAB -->
-                    <Border Padding="20">
+                    <Border Style="{StaticResource GlassCardStyle}" Padding="20">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -1096,7 +991,7 @@
                     </Border>
 
                     <!-- 7. ABOUT TAB -->
-                    <Border Padding="24">
+                    <Border Style="{StaticResource GlassCardStyle}" Padding="24">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -1142,29 +1037,73 @@
                                     Screen capture exclusion uses SetWindowDisplayAffinity (WDA_EXCLUDEFROMCAPTURE), whose visibility
                                     protection depends on Windows 10 2004+/Windows 11 and the capture driver used.
                                 </TextBlock>
+
+                                <StackPanel Margin="0,18,0,0" FlowDirection="RightToLeft" HorizontalAlignment="Right">
+                                    <TextBlock Text="صُنع بحب مع مطور عبدو بوليس و مطورة الاء بنته" FontSize="15" FontWeight="Bold" Foreground="White" />
+                                    <TextBlock Text="عبدو بوليس احتل عرش المجال ♥" FontSize="15" FontWeight="Bold" Foreground="#F43F5E" Margin="0,6,0,0" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,16,0,0" FlowDirection="RightToLeft" HorizontalAlignment="Right">
+                                    <Button Style="{StaticResource GlassButtonStyle}" Click="ContactDeveloper_Click" Content="تواصل مع مطور" />
+                                    <TextBlock Text="+20 114 170 6613" VerticalAlignment="Center" Margin="12,0,0,0"
+                                               FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" />
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </Border>
                 </Grid>
 
                 <!-- ================= ROW 2: BOTTOM STATUS BAR ================= -->
-                <Border Grid.Row="2" Background="#99081026" BorderBrush="#3338BDF8" BorderThickness="1"
-                        CornerRadius="10" Padding="14,7" Margin="0,12,0,0">
-                    <DockPanel>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Ellipse Width="9" Height="9" Margin="0,0,8,0"
-                                     Fill="{Binding Telemetry.State, Converter={StaticResource EngineStateToBrushConverter}}" />
-                            <TextBlock Text="Status: " FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
-                            <TextBlock Text="{Binding Telemetry.StatusMessage}" FontSize="12" FontWeight="SemiBold" Foreground="White" />
-                        </StackPanel>
+                <!-- ROW 2: two slanted dark-glass shapes over the background art (design style) -->
+                <Grid Grid.Row="2" Margin="0,12,0,0" Height="34">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="⌨  Active Script: " FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
-                            <TextBlock Text="{Binding Telemetry.ActiveScriptName}" FontSize="12" FontWeight="SemiBold" Foreground="#38BDF8" Margin="0,0,14,0" />
-                            <TextBlock Text="{Binding QueueCount, StringFormat='Queue: {0}'}" FontSize="12" Foreground="#A855F7" />
-                        </StackPanel>
-                    </DockPanel>
-                </Border>
+                    <!-- Left shape: rounded left cap, slanted right edge -->
+                    <Path Grid.Column="0" Stretch="Fill" Fill="#78100E1E" StrokeThickness="1"
+                          Data="M 17,0 L 1000,0 L 980,34 L 17,34 A 17,17 0 1 1 17,0 Z">
+                        <Path.Stroke>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#9938BDF8" Offset="0" />
+                                <GradientStop Color="#668A5CF6" Offset="1" />
+                            </LinearGradientBrush>
+                        </Path.Stroke>
+                    </Path>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="18,0,0,0">
+                        <Ellipse Width="9" Height="9" Margin="0,0,8,0"
+                                 Fill="{Binding Telemetry.State, Converter={StaticResource EngineStateToBrushConverter}}" />
+                        <TextBlock Text="Status: " FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding Telemetry.StatusMessage}" FontSize="12" FontWeight="SemiBold" Foreground="White" />
+                    </StackPanel>
+
+                    <!-- Right shape: slanted left edge, rounded right cap -->
+                    <Path Grid.Column="2" Stretch="Fill" Fill="#78100E1E" StrokeThickness="1"
+                          Data="M 20,0 L 443,0 A 17,17 0 0 1 443,34 L 0,34 Z">
+                        <Path.Stroke>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#668A5CF6" Offset="0" />
+                                <GradientStop Color="#9938BDF8" Offset="0.7" />
+                                <GradientStop Color="#AAEF4444" Offset="1" />
+                            </LinearGradientBrush>
+                        </Path.Stroke>
+                    </Path>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="28,0,14,0">
+                        <Border Background="#33581C87" BorderBrush="#99A855F7" BorderThickness="1"
+                                CornerRadius="7" Padding="6,2" Margin="0,0,10,0" VerticalAlignment="Center">
+                            <TextBlock Text="&#x2328;" FontSize="11" Foreground="#D8B4FE" />
+                        </Border>
+                        <TextBlock Text="Active Script: " FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <TextBlock Text="&#x1F451; " FontSize="11" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Telemetry.ActiveScriptName}" FontSize="12" FontWeight="SemiBold" Foreground="White" />
+                        <Border Width="24" Height="24" CornerRadius="12" Margin="14,0,0,0"
+                                Background="#330A1226" BorderBrush="#8096AADC" BorderThickness="1" VerticalAlignment="Center">
+                            <TextBlock Text="&#x2303;" FontSize="11" Foreground="#E6F0FF" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </StackPanel>
+                </Grid>
             </Grid>
 
             <!-- ================= MODAL OVERLAY: KEYBOARD SHORTCUT RECORDER ================= -->
