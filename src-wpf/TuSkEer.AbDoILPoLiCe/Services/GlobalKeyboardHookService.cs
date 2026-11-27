@@ -13,7 +13,9 @@ public enum GlobalHotkeyActionKind
 {
     ScriptTrigger = 0,
     PauseResume = 1,
-    Stop = 2
+    Stop = 2,
+    SpeedUp = 3,
+    SpeedDown = 4
 }
 
 public sealed record HotkeyTriggeredEvent(
@@ -67,7 +69,9 @@ public sealed class GlobalKeyboardHookService : IDisposable
     public void UpdateBindings(
         IEnumerable<ScriptItem> scripts,
         HotkeyBinding pauseResumeHotkey,
-        HotkeyBinding stopHotkey)
+        HotkeyBinding stopHotkey,
+        HotkeyBinding? speedUpHotkey = null,
+        HotkeyBinding? speedDownHotkey = null)
     {
         var next = new Dictionary<(int Vk, HotkeyModifiers Mods), (GlobalHotkeyActionKind, long?)>();
 
@@ -79,6 +83,16 @@ public sealed class GlobalKeyboardHookService : IDisposable
         if (stopHotkey is { IsEmpty: false })
         {
             next[(stopHotkey.VirtualKey, stopHotkey.Modifiers)] = (GlobalHotkeyActionKind.Stop, null);
+        }
+
+        if (speedUpHotkey is { IsEmpty: false })
+        {
+            next.TryAdd((speedUpHotkey.VirtualKey, speedUpHotkey.Modifiers), (GlobalHotkeyActionKind.SpeedUp, null));
+        }
+
+        if (speedDownHotkey is { IsEmpty: false })
+        {
+            next.TryAdd((speedDownHotkey.VirtualKey, speedDownHotkey.Modifiers), (GlobalHotkeyActionKind.SpeedDown, null));
         }
 
         foreach (var script in scripts)

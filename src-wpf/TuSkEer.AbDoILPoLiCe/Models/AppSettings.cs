@@ -33,6 +33,10 @@ public sealed class AppSettings
 
     public HotkeyBinding StopHotkey { get; set; } = new(0x72, HotkeyModifiers.None); // F3
 
+    public HotkeyBinding SpeedUpHotkey { get; set; } = new(); // unassigned by default; raises typing delay +5 ms
+
+    public HotkeyBinding SpeedDownHotkey { get; set; } = new(); // unassigned by default; lowers typing delay -5 ms
+
     public bool ExcludeFromCapture { get; set; } = false;
 
     public bool MinimizeToTrayOnClose { get; set; } = true;
@@ -53,6 +57,8 @@ public sealed class AppSettings
         AppendPasteMode = AppendPasteMode,
         PauseResumeHotkey = PauseResumeHotkey?.Clone() ?? new HotkeyBinding(),
         StopHotkey = StopHotkey?.Clone() ?? new HotkeyBinding(),
+        SpeedUpHotkey = SpeedUpHotkey?.Clone() ?? new HotkeyBinding(),
+        SpeedDownHotkey = SpeedDownHotkey?.Clone() ?? new HotkeyBinding(),
         ExcludeFromCapture = ExcludeFromCapture,
         MinimizeToTrayOnClose = MinimizeToTrayOnClose,
         EnableBackgroundParticles = EnableBackgroundParticles,

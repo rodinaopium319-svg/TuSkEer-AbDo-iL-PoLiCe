@@ -182,6 +182,12 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
         RecordStopHotkeyCommand = new RelayCommand(() =>
             BeginRecording("Global Stop", ApplyStopHotkey));
 
+        RecordSpeedUpHotkeyCommand = new RelayCommand(() =>
+            BeginRecording("Speed +5 ms", ApplySpeedUpHotkey));
+
+        RecordSpeedDownHotkeyCommand = new RelayCommand(() =>
+            BeginRecording("Speed -5 ms", ApplySpeedDownHotkey));
+
         ConfirmRecordedHotkeyCommand = new RelayCommand(ConfirmRecordedHotkey, () => _pendingRecordedHotkey is not null);
         CancelRecordingHotkeyCommand = new RelayCommand(CancelRecordingHotkey);
 
@@ -235,6 +241,10 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
     public ICommand ClearScriptHotkeyCommand { get; }
     public ICommand RecordPauseHotkeyCommand { get; }
     public ICommand RecordStopHotkeyCommand { get; }
+
+    public ICommand RecordSpeedUpHotkeyCommand { get; }
+
+    public ICommand RecordSpeedDownHotkeyCommand { get; }
     public ICommand ConfirmRecordedHotkeyCommand { get; }
     public ICommand CancelRecordingHotkeyCommand { get; }
     public ICommand InsertEmojiToAppendCommand { get; }
@@ -519,6 +529,10 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
     public string PauseResumeHotkeyDisplay => _settings.PauseResumeHotkey.DisplayString;
     public string StopHotkeyDisplay => _settings.StopHotkey.DisplayString;
 
+    public string SpeedUpHotkeyDisplay => _settings.SpeedUpHotkey.DisplayString;
+
+    public string SpeedDownHotkeyDisplay => _settings.SpeedDownHotkey.DisplayString;
+
     public bool ExcludeFromCapture
     {
         get => _settings.ExcludeFromCapture;
@@ -669,6 +683,14 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
                 _scheduler.StopAll();
                 break;
 
+            case GlobalHotkeyActionKind.SpeedUp:
+                TypingDelayMs = _settings.TypingDelayMs + 5;
+                break;
+
+            case GlobalHotkeyActionKind.SpeedDown:
+                TypingDelayMs = _settings.TypingDelayMs - 5;
+                break;
+
             case GlobalHotkeyActionKind.ScriptTrigger when evt.ScriptId.HasValue:
                 var lookup = Volatile.Read(ref _enabledScriptsById);
                 if (lookup.TryGetValue(evt.ScriptId.Value, out var script) && script.IsEnabled)
@@ -803,7 +825,9 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
         }
 
         if (!string.Equals(targetLabel, "Global Stop", StringComparison.Ordinal) &&
-            candidate.Equals(_settings.StopHotkey))
+            candidate.Equals(_settings.StopHotkey) ||
+            candidate.Equals(_settings.SpeedUpHotkey) ||
+            candidate.Equals(_settings.SpeedDownHotkey))
         {
             conflicts.Add("Global Stop");
         }
@@ -883,11 +907,28 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
         ScheduleSettingsSave();
     }
 
+    private void ApplySpeedUpHotkey(HotkeyBinding binding)
+    {
+        _settings.SpeedUpHotkey = binding;
+        OnPropertyChanged(nameof(SpeedUpHotkeyDisplay));
+        RefreshHookBindings();
+        ScheduleSettingsSave();
+    }
+
+    private void ApplySpeedDownHotkey(HotkeyBinding binding)
+    {
+        _settings.SpeedDownHotkey = binding;
+        OnPropertyChanged(nameof(SpeedDownHotkeyDisplay));
+        RefreshHookBindings();
+        ScheduleSettingsSave();
+    }
+
     private void RefreshHookBindings()
     {
         var snapshotMap = Scripts.Where(s => s.IsEnabled).ToDictionary(s => s.Id);
         Volatile.Write(ref _enabledScriptsById, snapshotMap);
-        _hookService.UpdateBindings(Scripts, _settings.PauseResumeHotkey, _settings.StopHotkey);
+        _hookService.UpdateBindings(Scripts, _settings.PauseResumeHotkey, _settings.StopHotkey,
+            _settings.SpeedUpHotkey, _settings.SpeedDownHotkey);
         OnPropertyChanged(nameof(HookStatusText));
     }
 
@@ -1024,6 +1065,8 @@ public sealed class MainViewModel : INotifyPropertyChanged, IDisposable
         OnPropertyChanged(nameof(AppendModeLabel));
         OnPropertyChanged(nameof(PauseResumeHotkeyDisplay));
         OnPropertyChanged(nameof(StopHotkeyDisplay));
+        OnPropertyChanged(nameof(SpeedUpHotkeyDisplay));
+        OnPropertyChanged(nameof(SpeedDownHotkeyDisplay));
         OnPropertyChanged(nameof(ExcludeFromCapture));
         OnPropertyChanged(nameof(MinimizeToTrayOnClose));
         OnPropertyChanged(nameof(EnableBackgroundParticles));
