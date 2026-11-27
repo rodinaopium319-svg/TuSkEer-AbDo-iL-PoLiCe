@@ -353,7 +353,7 @@
                     </Grid>
 
                     <!-- 2. SCRIPTS LIBRARY TAB (Virtualized 300+ Scripts) -->
-                    <Border Style="{StaticResource GlassCardStyle}" Padding="18">
+                    <Border Padding="18">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -762,7 +762,7 @@
                     </Grid>
 
                     <!-- 4. KEYBOARD SHORTCUTS TAB -->
-                    <Border Style="{StaticResource GlassCardStyle}" Padding="18">
+                    <Border Padding="18">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -859,7 +859,7 @@
                     </Border>
 
                     <!-- 5. TYPING ENGINE TAB -->
-                    <Border Style="{StaticResource GlassCardStyle}" Padding="20">
+                    <Border Padding="20">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -928,7 +928,7 @@
                     </Border>
 
                     <!-- 6. SETTINGS TAB -->
-                    <Border Style="{StaticResource GlassCardStyle}" Padding="20">
+                    <Border Padding="20">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -998,7 +998,7 @@
                     </Border>
 
                     <!-- 7. ABOUT TAB -->
-                    <Border Style="{StaticResource GlassCardStyle}" Padding="24">
+                    <Border Padding="24">
                         <Border.Style>
                             <Style TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
                                 <Setter Property="Visibility" Value="Collapsed" />
